@@ -1,3 +1,24 @@
+Vue.component('tab-home', { 
+	template: '<div>Home component</div>' 
+})
+Vue.component('tab-posts', { 
+	template: '<div>Posts component</div>' 
+})
+Vue.component('tab-archive', { 
+    template: '<div>'
+                +'<h3>Archive component</h3>'
+                +'<ul>'
+                +'<li v-for="(c,i) in contents" :key="i">{{ c }}</li>'
+                +'</ul>'
+             +'</div>',
+    data: function(){
+        return {
+            contents:['c++','java','c','kotlin','python','javascript']
+        };
+        
+    }
+})
+
 Vue.component('start-game', { 
     name:'start-game',
     template:'<section>'
@@ -11,7 +32,7 @@ Vue.component('start-game', {
 
  Vue.component('action-buttons',{
      name:'action-buttons',
-    props:['testprop'],
+     props:['testprop'],
      template:'<section class="row controls">'
                 +'<div class="small-12 columns">'
                     +'<button id="attack">ATTACK</button>'
@@ -39,8 +60,15 @@ new Vue({
         // game is running or not
         gameIsRunning: false,
         everyTurn:[],
-        testa:'testaki'
+        testa:'testaki',
+        currentTab: 'home',
+        tabs: ['home', 'posts', 'archive']
     },
+     computed: {
+       currentTabComponent: function () {
+          return 'tab-' + this.currentTab;
+        }
+      },
     methods:{
         startGame: function(){
             this.gameIsRunning = true;
@@ -123,3 +151,8 @@ new Vue({
     }
 });
 
+
+
+new Vue({
+  
+})
