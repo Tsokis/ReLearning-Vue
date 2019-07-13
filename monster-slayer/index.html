@@ -60,6 +60,19 @@
                 <h3>Components</h3>
                 <start-game></start-game>
                 <action-buttons :testprop="testa" @tame="testa = $event"></action-buttons>
+                <div id="dynamic-component-demo" class="demo">
+                    <button
+                      v-for="tab in tabs"
+                      v-bind:key="tab"
+                      v-bind:class="['tab-button', { active: currentTab === tab }]"
+                      v-on:click="currentTab = tab"
+                    >{{ tab }}</button>
+                  
+                    <component
+                      v-bind:is="currentTabComponent"
+                      class="tab"
+                    ></component>
+                  </div>
             </div>
         </section>        
 </div>
